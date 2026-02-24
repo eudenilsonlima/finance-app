@@ -1,3 +1,4 @@
+import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -9,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 
-// Registro obrigatório dos componentes do Chart.js
+// Este passo é obrigatório no Chart.js v4+ para registrar as escalas
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,18 +21,26 @@ ChartJS.register(
 );
 
 export default function Grafico({ transacoes }) {
-  // Garante que o gráfico não quebre se não houver transações
+  // Prepara os dados para o gráfico
   const data = {
     labels:
       transacoes.length > 0
         ? transacoes.map((t) => t.descricao)
-        : ["Sem dados"],
+        : ["Nenhuma transação"],
     datasets: [
       {
         label: "Valor (R$)",
         data: transacoes.length > 0 ? transacoes.map((t) => t.valor) : [0],
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: transacoes.map((t) =>
+          t.tipo === "receita"
+            ? "rgba(46, 204, 113, 0.6)"
+            : "rgba(231, 76, 60, 0.6)",
+        ),
+        borderColor: transacoes.map((t) =>
+          t.tipo === "receita"
+            ? "rgba(46, 204, 113, 1)"
+            : "rgba(231, 76, 60, 1)",
+        ),
         borderWidth: 1,
       },
     ],
@@ -39,16 +48,16 @@ export default function Grafico({ transacoes }) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Resumo de Transações",
-      },
+      legend: { position: "top" },
+      title: { display: true, text: "Fluxo de Caixa" },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <div style={{ height: "300px", marginBottom: "20px" }}>
+      <Bar data={data} options={options} />
+    </div>
+  );
 }
