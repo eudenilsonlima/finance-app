@@ -1,7 +1,14 @@
 .container {
   padding: 20px;
-  font-family: sans-serif;
-  background: #f4f7f6;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #f4f7f6;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 .summary {
   display: flex;
@@ -11,29 +18,55 @@
 .card {
   background: white;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   flex: 1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
-.balance {
-  background: #27ae60;
-  color: white;
+.card p {
+  color: #666;
+  margin: 0;
 }
-.red {
+.card h3 {
+  font-size: 24px;
+  margin: 10px 0 0;
+}
+.balance {
+  border-top: 5px solid #3498db;
+}
+.expenses .red {
   color: #e74c3c;
 }
-.green {
+.income .green {
   color: #2ecc71;
+}
+.chart-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
 }
 table {
   width: 100%;
-  background: white;
-  border-radius: 10px;
   border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
 }
-th,
-td {
+th {
+  background: #f8f9fa;
   padding: 15px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  color: #666;
+}
+td {
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+.red {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.green {
+  color: #2ecc71;
+  font-weight: bold;
 }

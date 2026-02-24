@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { api } from "../services/api";
+import api from "../services/api";
 import Grafico from "../components/Grafico";
 import "./Dashboard.css"; // Vamos criar este arquivo abaixo
 
