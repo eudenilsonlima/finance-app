@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // ESSA LINHA RESOLVE O ERRO "axios is not defined"
+// Importe a 'api' do seu arquivo api.js (ajuste o caminho se necessário)
+import { api } from "./services/api";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [despesas, setDespesas] = useState([]);
   const [receitas, setReceitas] = useState([]);
 
-  // Use a URL direta do Render aqui para garantir que funcione na Vercel
-  const API_URL = "https://denilson-finance-app.onrender.com";
-
   useEffect(() => {
-    // Busca Despesas
-    axios
-      .get(`${API_URL}/api/despesas`)
+    // Agora usamos api.get em vez de axios.get
+    // Note que não precisamos repetir a URL toda, só o final da rota!
+    api
+      .get("/despesas")
       .then((res) => setDespesas(res.data))
       .catch((err) => console.error("Erro despesas:", err));
 
-    // Busca Receitas
-    axios
-      .get(`${API_URL}/api/receitas`)
+    api
+      .get("/receitas")
       .then((res) => setReceitas(res.data))
       .catch((err) => console.error("Erro receitas:", err));
   }, []);
