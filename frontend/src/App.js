@@ -1,12 +1,4 @@
-import React from "react";
+const API_URL = process.env.REACT_APP_API_URL;
 
-function App() {
-  return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Finance App</h1>
-      <p>Bem-vindo ao seu aplicativo de finanças pessoais!</p>
-    </div>
-  );
-}
-
-export default App;
+axios.get(`${API_URL}/api/despesas`).then((res) => setDespesas(res.data));
+axios.get(`${API_URL}/api/receitas`).then((res) => setReceitas(res.data));
